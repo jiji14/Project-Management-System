@@ -24,6 +24,13 @@
 	<!-- sweet alerts -->
 	<link href="${path}/a01_com/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet">
 	
+	<!-- DataTables -->
+    <link href="${path}/a01_com/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="${path}/a01_com/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+   
+    <!-- Responsive datatable examples -->
+    <link href="${path}/a01_com/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    
 	<!-- App css -->
 	<link href="${path}/a01_com/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="${path}/a01_com/assets/css/icons.css" rel="stylesheet" type="text/css" />
@@ -440,7 +447,7 @@
 	                                <div class="portlet logBox"><!-- /primary heading -->
 	                                    <div class="portlet-heading">
 	                                        <h3 class="portlet-title text-dark text-uppercase textHead">
-	                                            Board
+	                                            	Notice
 	                                        </h3>
 	                                        <div class="portlet-widgets">
 	                                            <a href="#" data-toggle="reload"><i class="mdi mdi-refresh"></i></a>
@@ -455,10 +462,10 @@
 	                                    <div id="portlet3" class="panel-collapse collapse show">
 	                                        <div class="portlet-body">
 	                                            <div class="table-responsive">
-	                                                <table class="table">
+	                                                <table class="table" id="datatable-buttons" >
 	                                                    <thead>
 	                                                        <tr>
-	                                                            <th>#</th>
+	                                                            <th>글번호</th>
 	                                                            <th>제목</th>
 	                                                            <th>작성자</th>
 	                                                            <th>등록일</th>
@@ -466,35 +473,15 @@
 	                                                        </tr>
 	                                                    </thead>
 	                                                    <tbody>
+	                                                    	<c:forEach var="board" items="${boarList}" varStatus="sts">
 	                                                        <tr>
-	                                                            <td>1</td>
-	                                                            <td>Velonic Admin v1</td>
-	                                                            <td>종종쓰</td>
-	                                                            <td>26/04/2019</td>
-	                                                            <td>10</td>
+	                                                            <td>${board.no}</td>
+	                                                            <td>${board.title}</td>
+	                                                            <td>${board.writer}</td>
+	                                                            <td>${board.credte }</td>
+	                                                            <td>${board.readcnt }</td>
 	                                                        </tr>
-	                                                        <tr>
-	                                                            <td>1</td>
-	                                                            <td>Velonic Admin v1</td>
-	                                                            <td>종종쓰</td>
-	                                                            <td>26/04/2019</td>
-	                                                            <td>10</td>
-	                                                        </tr>
-	                                                        <tr>
-	                                                            <td>1</td>
-	                                                            <td>Velonic Admin v1</td>
-	                                                            <td>종종쓰</td>
-	                                                            <td>26/04/2019</td>
-	                                                            <td>10</td>
-	                                                        </tr>
-	                                                        <tr>
-	                                                            <td>1</td>
-	                                                            <td>Velonic Admin v1</td>
-	                                                            <td>종종쓰</td>
-	                                                            <td>26/04/2019</td>
-	                                                            <td>10</td>
-	                                                        </tr>
-	                                                        
+	                                                        </c:forEach>
 	                                                    </tbody>
 	                                                </table>
 	                                            </div>
@@ -533,9 +520,12 @@
         <script src="${path}/a01_com/assets/js/metisMenu.min.js"></script>
         <script src="${path}/a01_com/assets/js/waves.js"></script>
         <script src="${path}/a01_com/assets/js/jquery.slimscroll.js"></script>
+        
         <script type="text/javascript" src="${path}/a00_com/jquery-3.4.1.js"></script>
+        
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
         <!-- Counter js  -->
         <script src="${path}/a01_com/plugins/waypoints/jquery.waypoints.min.js"></script>
         <script src="${path}/a01_com/plugins/counterup/jquery.counterup.min.js"></script>
@@ -568,11 +558,36 @@
         <script src="${path}/a01_com/assets/js/jquery.core.js"></script>
         <script src="${path}/a01_com/assets/js/jquery.app.js"></script>
         
+        <!-- Responsive examples -->
+        <script src="${path}/a01_com/plugins/datatables/dataTables.responsive.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/responsive.bootstrap4.min.js"></script>
         
+        <!-- Required datatable js -->
+        <script src="${path}/a01_com/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        
+        
+         <!-- Buttons examples -->
+        <script src="${path}/a01_com/plugins/datatables/dataTables.buttons.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/jszip.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/pdfmake.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/vfs_fonts.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/buttons.html5.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/buttons.print.min.js"></script>
+        <script src="${path}/a01_com/plugins/datatables/buttons.colVis.min.js"></script>
+       
         <script>
         	// UI 순서 받아오기 및 업데이트 
             jQuery(document).ready(function($) {
-
+            	
+            	$('#datatable').DataTable();
+            	 
+            	var table = $('#datatable-buttons').DataTable({
+                    lengthChange: true,
+                });
+            	
+            	table.buttons().container().appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+            	
             	$.ajax({
                     type:"post",
                     url:"${path}/dashboard.do?method=uiFormat",

@@ -43,6 +43,10 @@ INSERT INTO Membership values('memno'||memno1_seq.nextval, 'Olive@naver.com',123
 INSERT INTO Membership values('memno'||memno1_seq.nextval, 'Bob@gmail.com',12345,'Bob',sysdate,'영업','팀장', sysdate);
 INSERT INTO Membership values('memno'||memno1_seq.nextval, 'Timmy@naver.com',12345,'Timmy',sysdate,'홍보','과장', sysdate);
 
+      insert into Membership values('memno'||memno1_seq.nextval,
+         'fuck@this','12345','fuuuck',sysdate,'','',sysdate,'pro');
+
+
 SELECT * FROM Membership;
 
 CREATE SEQUENCE project_seq

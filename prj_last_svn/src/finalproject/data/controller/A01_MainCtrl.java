@@ -39,14 +39,8 @@ public class A01_MainCtrl {
 		// 멤버정보
 		d.addAttribute("memList", service.memberList(prjno));
 		
-		//멤버로그
-		//ArrayList<MemberLog> memlog = service.memberLog(prjno);
-		//System.out.println("로그시작");
-		//for(MemberLog m:memlog) {
-		//	System.out.println("멤버로그:"+m.getMemno()+":"+m.getDone());
-		//}
-		d.addAttribute("memlog", service.memberLog(prjno));
-		
+		// 게시판 
+		d.addAttribute("boarList", service.boardList(prjno));
 		
 		
 		return "WEB-INF\\view\\pms\\a01_main\\a01_main.jsp";

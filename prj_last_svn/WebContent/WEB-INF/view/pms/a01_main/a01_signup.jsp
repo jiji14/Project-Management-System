@@ -99,7 +99,7 @@
                             
                                <div class="col-12">
                                   <label for="id">Email :</label>
- s                                    <input class="form-control" type="email" id="email" name="id" required="" placeholder="john@deo.com">
+                                    <input class="form-control" type="email" id="email" name="id" required="" placeholder="john@deo.com">
                                     <!-- VO의 getter와 여기있는 form의 name 은 똑같아야한다!!! -->
                                 	<button class="btn btn-md btn-primary waves-effect waves-light" type="button" id="idCheck" name="idCheck">아이디 확인</button>
                                 	

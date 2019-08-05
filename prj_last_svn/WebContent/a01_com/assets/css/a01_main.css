@@ -50,3 +50,8 @@
 #riskchartdiv {
    height: 450px; 
 }
+
+/* board */
+.table-responsive{
+	height: 450px;
+}

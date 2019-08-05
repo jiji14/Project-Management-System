@@ -18,7 +18,20 @@ public class Board {
 	private String etc;
 	private int level;
 	private String category;
+	private String prjno;
 	
+	public String getPrjno() {
+		return prjno;
+	}
+
+
+
+	public void setPrjno(String prjno) {
+		this.prjno = prjno;
+	}
+
+
+
 	//파일 정보 list 가져오기 
 	//dao는 다르지만, 한번에 기본정보와 파일을 가져올 수게 처리하기 위해서. fnames는 나중에 c03_boardDetail.jsp에서 ${board.fnames}
 	private ArrayList<String> fnames;
@@ -37,7 +50,7 @@ public class Board {
 	
 	
 	public Board(int no, int refno, String title, String content, String writer, int readcnt, Date credte, Date uptdte,
-			String etc, String category) {
+			String etc, String category, String prjno) {
 		super();
 		this.no = no;
 		this.refno = refno;
@@ -49,6 +62,7 @@ public class Board {
 		this.uptdte = uptdte;
 		this.etc = etc;
 		this.category = category;
+		this.prjno = prjno;
 	}
 
 

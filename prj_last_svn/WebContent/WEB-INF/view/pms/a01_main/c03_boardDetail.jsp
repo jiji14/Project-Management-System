@@ -114,17 +114,17 @@
       <div class="input-group-prepend">
          <span class="input-group-text">번호</span>
       </div>
-      <form:input path="no" class="form-control" />   
+      <form:input path="no" class="form-control" readonly="true" />   
       <div class="input-group-prepend">
          <span class="input-group-text">조회수</span>
       </div>
-      <form:input path="readcnt" class="form-control"  />       
+      <form:input path="readcnt" class="form-control"  readonly="true" />       
    </div>   
    <div class="input-group mb-3">
       <div class="input-group-prepend">
          <span class="input-group-text">상위글번호</span>
       </div>
-      <form:input path="refno" class="form-control" />   
+      <form:input path="refno" class="form-control" readonly="true" />   
    </div>         
    <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -134,17 +134,17 @@
       <div class="input-group-prepend">
          <span class="input-group-text">작 성 자</span>
       </div>
-      <form:input path="writer" class="form-control"  />       
+      <form:input path="writer" class="form-control"  readonly="true" />       
    </div>
    <div class="input-group mb-3">
       <div class="input-group-prepend">
          <span class="input-group-text">등록일</span>
       </div>
-      <form:input path="credte" class="form-control" />   
+      <form:input path="credte" class="form-control" readonly="true" />   
       <div class="input-group-prepend">
          <span class="input-group-text">수정일</span>
       </div>
-      <form:input path="uptdte" class="form-control" />       
+      <form:input path="uptdte" class="form-control" readonly="true" />       
    </div>      
    <div class="input-group mb-3">
       <div class="input-group-prepend">

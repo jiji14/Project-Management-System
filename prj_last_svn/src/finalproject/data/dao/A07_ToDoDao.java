@@ -22,4 +22,7 @@ public interface A07_ToDoDao {
 	/* 숨김처리 및 숨김해제 */
 	public void makeHidden(String taskid);
 	public void makeShow(String taskid);
+	
+	/* 디테일 */
+	public ToDoList detail(String taskid);
 }

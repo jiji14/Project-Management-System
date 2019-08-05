@@ -48,6 +48,7 @@ public class A07_ToDoCtrl {
 	@RequestMapping(params="method=addWorkcard")
 	public String addWorkcard(@RequestParam("step") String step, Model d, HttpSession session) {
 		Member mem = (Member)session.getAttribute("mem");
+		System.out.println("step:"+step);
 		// 로그인 정보를 못 받아올경우
 		if(mem==null) {
 			return "WEB-INF\\view\\pms\\a01_main\\z01_error.jsp";
@@ -55,13 +56,13 @@ public class A07_ToDoCtrl {
 		System.out.println(step);
 		if(step.equals("progress")) {
 			d.addAttribute("todolist", service.hiddenList(mem));	
-			System.out.println("보냈다!");
+			System.out.println("progress 보냈다!");
 		}else if(step.equals("emergency")) {
 			d.addAttribute("todolist", service.hiddenEmer(mem));
-			System.out.println("보냈다!");
+			System.out.println("emergency 보냈다!");
 		}else if(step.equals("done")) {
 			d.addAttribute("todolist", service.hiddenDone(mem));
-			System.out.println("보냈다!");
+			System.out.println("done 보냈다!");
 		}
 		return "pageJsonReport";
 	}
@@ -89,5 +90,17 @@ public class A07_ToDoCtrl {
 		System.out.println("테스크아이디: "+taskid);
 		service.makeShow(taskid);
 		return "WEB-INF\\view\\pms\\a01_main\\a08_addWorkcard.jsp";
+	}
+	
+	@RequestMapping(params="method=detail")
+	public String detail(@RequestParam("taskid") String taskid, Model d, HttpSession session) {
+		Member mem = (Member)session.getAttribute("mem");
+		// 로그인 정보를 못 받아올경우
+		if(mem==null) {
+			return "WEB-INF\\view\\pms\\a01_main\\z01_error.jsp";
+		}
+		System.out.println("테스크아이디: "+taskid);
+		d.addAttribute("detail", service.detail(taskid));
+		return "pageJsonReport";
 	}
 }

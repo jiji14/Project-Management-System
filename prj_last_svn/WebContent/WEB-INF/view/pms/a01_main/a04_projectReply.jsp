@@ -136,15 +136,11 @@
 		</form:form>	
 		
 		<!-- 멤버추가페이지 -->
-	<div class="addForm">추가</div>
-	<div style="text-align:center;">
-	            <input  type="button" class="btn btn-info" 
-	            value="등록" id="memRegBtn"/>  
-	         </div>
+	
 	<form:form commandName="members" method="post" action="${path}/project.do?method=minsert" class="memForm">
 	<div class="addMem">
 		<form:hidden path="memno" name="memno" class="memno"/>
-			<div class="input-group mb-3" >
+			<div class="input-group mb-3 formethod" >
 				<div class="input-group-pretend">
 					<span class="input-group-text">아이디</span>
 				</div>
@@ -155,7 +151,7 @@
 			<option value="${act.id}">
             </c:forEach>
 			</datalist>
-			<div class="overlap">중복확인</div>
+			<div class="overlap btn-outline-info btn">중복확인</div>
 				<div class="input-group-pretend">
 					<span class="input-group-text">권한</span>
 				</div>
@@ -168,7 +164,10 @@
 			</div>
 		</div>	
 		</form:form>
-				
+	<div class="addForm">추가</div>
+	<div style="text-align:center;">
+	     <input  type="button" class="btn btn-info" value="등록" id="memRegBtn"/>  
+	</div>
       </div>      
 		</div>
 		</div>
@@ -314,8 +313,8 @@ $(document).ready(function(){
 	});
 	
 	// 멤버 삭제
-	 var div = "<div class='delBtn'>삭제</div>";
-    $(".addMem").append(div); //list라는 아이디에 html을 추가해라
+	 var div = "<div class='delBtn btn btn-outline-secondary'>삭제</div>";
+    $(".formethod").append(div); //list라는 아이디에 html을 추가해라
     
     $(document).on("click", ".delBtn", function() { //list안의 btnDel을 선택
     	//($(this).parent(".addMem").eq());

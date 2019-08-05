@@ -82,6 +82,10 @@
 	<update id="makeShow" parameterType="String">
 		UPDATE tasks SET isHidden = 0 WHERE taskid = #{taskid}
 	</update>
+	
+	<select id="detail" parameterType="String" resultType="todolist">
+		SELECT * from tasks WHERE taskid = #{taskid}
+	</select>
 </mapper>
 
 

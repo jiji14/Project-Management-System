@@ -55,9 +55,10 @@ DAO 인터페이스 명/ mapper namespace: springweb.a03_data.dao.A04_BoardDao
 	<select id = "boardList" parameterType = "boardSch" resultMap = "boardMap"> <!-- 객체로 여러개를 가져오니 resultMap -->
 	      SELECT * FROM (
 	      SELECT ROWNUM rn, a.*, level FROM BOARD a <!-- 답글의 계층을 표현하기 위해 level. 중간에 삭제된거를 인식 못하니 삭제된걸 제외하고 rownumber를 매긴다. -->
-	      where 1=1
+	      where 1=1 AND prjno=#{prjno}
 	      <if test="title != null and title != ''">
 	         and title like '%'||#{title}||'%'
+	         
 	      </if>
 	      <if test="writer != null and writer != ''">
 	         and writer like '%'||#{writer}||'%'
@@ -89,7 +90,7 @@ DAO 인터페이스 명/ mapper namespace: springweb.a03_data.dao.A04_BoardDao
 
 
 <insert id="boardInsert" parameterType="board">
-   insert into board values(board_seq.nextval,#{refno},#{title},#{content},#{writer},0,sysdate,sysdate,'',#{category})
+   insert into board values(board_seq.nextval,#{refno},#{title},#{content},#{writer},0,sysdate,sysdate,'',#{category},#{prjno})
 </insert>
 
 <!-- insertBoardFile(String fname) -->

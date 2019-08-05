@@ -26,8 +26,16 @@ public class BoardSch {
 	// 3. block의 마지막번호
 	private int endBlock;
 	
+	private String prjno;
 	
 	
+	
+	public String getPrjno() {
+		return prjno;
+	}
+	public void setPrjno(String prjno) {
+		this.prjno = prjno;
+	}
 	public int getBlockSize() {
 		return blockSize;
 	}

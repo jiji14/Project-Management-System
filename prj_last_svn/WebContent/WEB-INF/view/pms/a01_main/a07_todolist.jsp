@@ -72,6 +72,10 @@
 									<span>${sts.count}. ${emer.name}</span>
 									<span>${emer.dateEnd} 마감</span>
 									<div class="hideBox">
+										<label class="detailLabel" onclick="detailFunction('${emer.taskid}')">
+											<i class="ion  ion ion-ios-redo icons"></i>										
+											Detail
+										</label>
 										<label class="hideLabel" id="${emer.taskid}">
 											<i class="ion ion-md-eye-off icons"></i>									
 											Hide card
@@ -95,6 +99,10 @@
 									<span>${sts.count}. ${todo.name}</span>
 									<span>${todo.dateEnd} 마감</span>
 									<div class="hideBox">
+										<label class="detailLabel" onclick="detailFunction('${todo.taskid}')">
+											<i class="ion  ion ion-ios-redo icons"></i>										
+											Detail
+										</label>
 										<label class="hideLabel" id="${todo.taskid}">
 											<i class="ion ion-md-eye-off icons"></i>									
 											Hide card
@@ -118,6 +126,10 @@
 									<span>${sts.count}. ${done.name}</span>
 									<span>${done.dateEnd} 마감</span>
 									<div class="hideBox" >
+										<label class="detailLabel" onclick="detailFunction('${done.taskid}')">
+											<i class="ion  ion ion-ios-redo icons"></i>									
+											Detail
+										</label>
 										<label class="hideLabel" id="${done.taskid}" >
 											<i class="ion ion-md-eye-off icons"></i>									
 											Hide card
@@ -135,34 +147,74 @@
 						</div>
 					</div>
 					
-					<div id="dialog" title="jQuery UI dialog">
+					<div id="dialog">
 				        <div class="titleBox">
 							<h2 class="page-title float-left" id="title">Add Hidden work card</h2>
 						</div>
 				
 						<div class="cardBox">
-						<c:forEach var="todo" items="${todolist}" varStatus="sts">
-							<div class="workCard" id="${todo.taskid }">
-								<span>${todo.dateEnd }</span>
-								<span>${todo.name }</span>
-								<span class="btnBox">
-									<button type="button" class="btn btn-rounded btn-sm detailBtn">Detail</button>
-									<button type="button" class="btn btn-rounded btn-sm addBtn">Add</button>
-								</span>	
+						</div>
+
+						<div class="clsBox">
+							<button type="button" class="btn btn-rounded btn-sm" id="clsBtn">Close</button>
+						</div>
+					</div>
+					
+					<div id="dialog2">
+				        <div class="titleBox">
+							<h2 class="page-title float-left" id="title">Detail</h2>
+						</div>
+						<div class="detail">
+							<div class="form-group row eachDetail">
+								<label class="col-2 col-form-label">업무명</label>
+								<div class="col-10">
+									<input name="name" class="form-control" id="name" readOnly/>        
+								</div>
 							</div>
-						</c:forEach>
-				    	</div>
-				    </div>
+							<div class="form-group row eachDetail">
+								<label class="col-2 col-form-label">내용</label>
+								<div class="col-10">
+									<input name="description" class="form-control" id="description" readOnly/>        
+								</div>
+							</div>
+							<div class="form-group row eachDetail">
+								<label class="col-2 col-form-label">시작일</label>
+								<div class="col-10">
+									<input name="dateStart" class="form-control" id="dateStart" readOnly/>        
+								</div>
+							</div>
+							<div class="form-group row eachDetail">
+								<label class="col-2 col-form-label">종료일</label>
+								<div class="col-10">
+									<input name="dateEnd" class="form-control" id="dateEnd" readOnly/>        
+								</div>
+							</div>
+							<div class="form-group row eachDetail">
+								<label class="col-2 col-form-label">진척도</label>
+								<div class="col-10">
+									<input name="progressDetail" class="form-control" id="progressDetail" readOnly/>        
+								</div>
+							</div>
+							<div class="form-group row eachDetail">
+						</div>
+						
+						<div class="clsBox">
+							<button type="button" class="btn btn-rounded btn-sm" id="detailCls">Back</button>
+						</div>
+					</div>
+					</div>
+
 					<div id="chartdiv"></div>
 					
-
+					<div class="chartExp">
+						** 위 차트는 workcard의 숨김여부와 상관없이 전체 업무에 대한 진척도를 나타냅니다. 
+					</div>
 					</c:if>
 					
 				</div>
 				<!-- container -->
 			</div> 
-			<!-- content -->
-			
+
 			<!-- footer -->
 			<footer class="footer">
 				eZ company 2019.08.09
@@ -289,66 +341,92 @@
         <script>
             jQuery(document).ready(function($) {
 
-/* 				$(".addLabel").click(function(){
-					var step = $(this).attr('id');        
-					var win01 = window.open('${path}/todolist.do?method=addWorkcard&step='+step,'addWorkcard', 'width=600, height=500, ,resizable=1');
-                	win01.moveTo(500,100);
-				});
- */
 				$(".hideLabel").click(function(){
 					var taskid = $(this).attr('id')
 					$(location).attr("href","${path}/todolist.do?method=hide&taskid="+taskid);
 				});	
 				
-                $('#toggleBox').click(function(){
-					alert("클릭");
-					$(this).attr("aria-expanded","true");
-				});
-
                 $("#dialog").dialog({
     				autoOpen:false,
-    				buttons:{
-    					"등록":function(){ 
-    						//alert("등록!!"); 
-    						// 입력 내용을 가져와서 처리하기..(ajax)
-    						var eventName = $("#event-name").val();
-    						var eventDate = $("#event-date").val();
-    						// 출력..
-    						// 입력된 데이터를 h2로 처리하여 div show에 등록 처리..
-    						$("<h2></h2>").html(eventName+" : "+eventDate).appendTo("#show");
-    						// 초기화 처리.
-    						$("#event-name").val("");
-    						$("#event-date").val("");
-    						// 창닫기
-    						$("#dialog").dialog("close");
-    						
-    					},
-    					"초기":function(){ 	
-    						$("#event-name").val("");
-    						$("#event-date").val(""); 
-    					},
-    					"창닫기":function(){ 
-    						$("#dialog").dialog("close");
-    					}
-    				},
+    				closeOnEscape: false,
+    				modal:true
+    			});
+                
+                $("#dialog2").dialog({
+    				autoOpen:false,
+    				closeOnEscape: false,
     				modal:true
     			});
                 
                 $('.addLabel').click(function(){
                 	var step = $(this).attr('id');
-					//alert(taskid);
+					// 로딩할때마다 div 비우고 다시 생성
+					$('.cardBox').empty();
+					var text = "";
 					$.ajax({
 		                type:"post",
 		                url:"todolist.do?method=addWorkcard&step="+step,
+		                async: false,
 		                dataType:"json",
 		                success:function(data){
-		                   alert(data.todolist.length);
+		                   console.log(data);
+		                   var todolist = data.todolist;
+		                   for(var idx in todolist){
+		                       var each = todolist[idx];
+									text += "<div class='addworkCard'><span>"+each.dateEnd+"</span><span>"+each.name+"</span><span class='btnBox'>";
+									text +=	"<button type='button' class='btn btn-rounded btn-sm detailBtn' onclick='detailFunction(this.id)' id='"+each.taskid+"'>Detail</button>";
+									text += "<button type='button' class='btn btn-rounded btn-sm addBtn' onclick='addFunction(this.id)' id='"+each.taskid+"'>Add</button></span></div>";
+		                    }
+		                   $('.cardBox').append(text);
 		                }
 		             });    
-					
                 	$("#dialog").dialog("open");
                 });
+                
+                $('#clsBtn').click(function(){
+                	$("#dialog").dialog("close");
+                });
+                
+                $('#detailCls').click(function(){
+                	$("#dialog2").dialog("close");
+                });
             });
+            
+            function addFunction(taskid) {
+           
+				$.ajax({
+	                type:"post",
+	                url:"todolist.do?method=show&taskid="+taskid,
+	                dataType:"json"
+	             });
+				alert("등록되었습니다.");
+           	 	window.location.reload();
+			}
+            
+            function detailFunction(taskid) {
+            	/* 초기화 */
+            	$("#name").val("");
+            	$("#description").val("");
+            	$("#dateStart").val("");
+            	$("#dateEnd").val("");
+            	$("#progress").val("");
+            	
+ 				$.ajax({
+	                type:"post",
+	                url:"todolist.do?method=detail&taskid="+taskid,
+	                dataType:"json",
+	                success:function(data){
+	                	console.log(data);
+	                	var detail = data.detail;
+	                	$("#name").val(detail.name);
+	                	$("#description").val(detail.description);
+	                	$("#dateStart").val(detail.dateStart);
+	                	$("#dateEnd").val(detail.dateEnd);
+	                	$("#progressDetail").val(detail.progress);
+	                }
+	             }); 
+				$("#dialog2").dialog("open");
+			}
             
         </script>
     </body>

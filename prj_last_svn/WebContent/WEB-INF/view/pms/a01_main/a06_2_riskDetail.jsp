@@ -50,7 +50,15 @@
 		background-color: #6acad9 !important;
     	border-color: #bc2dc3 !important;
     	}
-    
+    .card-header{
+    	display: flex;
+  		justify-content: space-between;
+    }
+    #modify{
+    	font-weight: bold;
+    	color: #17a2b8;
+    	cursor: pointer;
+    }
    </style>
    
         <!-- your custom css -->
@@ -91,10 +99,15 @@
                               <div class="card">
                                   <div class="card-header">
                                       <h2 class="m-t-0 header-title mb-0">Detail</h2>
+                                      	<c:if test="${memAuth eq 'admin'}">
+											<h2 class="m-t-0 header-title mb-0" id="modify">
+	                                             	수정하기
+	                                        </h2>
+			       						</c:if>
                                   </div>
                                   <div class="card-body">
                                       <div>
-                                         <form:form commandName="risk" enctype="multipart/form-data" method="post">   
+                                         <form:form commandName="risk" enctype="multipart/form-data" method="post" id="detailForm" >   
 											<!-- 1. prj hidden처리 -->
 											<form:hidden path="prjno" class="form-control" value="${risk.prjno}"  />
 											<form:hidden path="riskno" id="riskno" class="form-control"  />
@@ -103,7 +116,7 @@
                                              <div class="form-group row">
                                                   <label class="col-2 col-form-label">제목</label>
                                                   <div class="col-10">
-                                                     <form:input path="title" class="form-control" />        
+                                                     <form:input path="title" class="form-control" readonly="true" />        
                                                   </div>
                                               </div>
                                           	
@@ -113,7 +126,7 @@
                                                   <div class="col-10">
                                                       <div class="input-group mb-3">
                                                           <div class="input-group-prepend">
-	                                                          <form:select path="taskname" id="prjBtn" selected="${risk.taskname}" class="form-control btn btn-primary waves-effect waves-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                                                          <form:select path="taskname" id="prjBtn" selected="${risk.taskname}" class="form-control btn btn-primary waves-effect waves-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
 		                                                          <form:option value="미정" class="dropdown-item">
 		                                                          	미정
 		                                                          </form:option>
@@ -126,7 +139,7 @@
                                                           </div>
                                                           	
                                                           <!--위에서 선택하면 자동으로 채어짐 -->
-                                                          <input type="text" id="whatProject" class="form-control" value="${risk.taskname }" aria-label="" aria-describedby="basic-addon1">
+                                                          <input type="text" id="whatProject" class="form-control" value="${risk.taskname }" aria-label="" aria-describedby="basic-addon1" readonly="true" >
                                                       </div>
                                                   </div>
                                               </div>  
@@ -135,7 +148,7 @@
                                               <div class="form-group row">
                                                   <label class="col-2 col-form-label">내용</label>
                                                   <div class="col-10">
-                                                     <form:textarea rows="10" placeholder="해당 리스크에 관한 내용을 입력하세요" path="description" class="form-control" />
+                                                     <form:textarea rows="10" placeholder="해당 리스크에 관한 내용을 입력하세요" path="description" class="form-control" readonly="true" />
                                                     
                                                   </div>
                                               </div>
@@ -146,15 +159,15 @@
 												<div class="col-10">
 													<div class="mt-3" id="riskDiv">
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="riskRadio1" class="custom-control-input" path="riskdegree" value="높음"/> 
+															<form:radiobutton id="riskRadio1" class="custom-control-input" path="riskdegree" value="높음" disabled="true"/> 
 															<label class="custom-control-label text-s" for="riskRadio1">높음</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="riskRadio2" class="custom-control-input" path="riskdegree" value="중간"/>
+															<form:radiobutton id="riskRadio2" class="custom-control-input" path="riskdegree" value="중간" disabled="true"/>
 															<label class="custom-control-label text-s" for="riskRadio2">중간</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="riskRadio3" class="custom-control-input" path="riskdegree" value="낮음"/>
+															<form:radiobutton id="riskRadio3" class="custom-control-input" path="riskdegree" value="낮음" disabled="true"/>
 														<label class="custom-control-label text-s" for="riskRadio3">낮음</label>
 														</div>
 													</div>
@@ -167,15 +180,15 @@
 												<div class="col-10">
 													<div class="mt-3" id="possibleDiv">
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="possibleRadio1" class="custom-control-input" path="posibility" value="높음"/>
+															<form:radiobutton id="possibleRadio1" class="custom-control-input" path="posibility" value="높음" disabled="true" />
 															<label class="custom-control-label text-s" for="possibleRadio1">높음</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="possibleRadio2" class="custom-control-input" path="posibility" value="중간"/>                       
+															<form:radiobutton id="possibleRadio2" class="custom-control-input" path="posibility" value="중간" disabled="true" />                       
 															<label class="custom-control-label text-s" for="possibleRadio2">중간</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="possibleRadio3" class="custom-control-input" path="posibility" value="낮음"/> 
+															<form:radiobutton id="possibleRadio3" class="custom-control-input" path="posibility" value="낮음" disabled="true" /> 
 															<label class="custom-control-label text-s" for="possibleRadio3">낮음</label>
 														</div>
 													</div>
@@ -188,7 +201,7 @@
                                                   <div class="col-10">
                                                       <div class="input-group mb-3">
                                                       	 <div class="input-group-prepend">
-	                                                    	  <form:select path="owner" id="ownerBtn" selected="${risk.owner}" class="form-control btn btn-primary waves-effect waves-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                                                    	  <form:select path="owner" id="ownerBtn" selected="${risk.owner}" class="form-control btn btn-primary waves-effect waves-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" readonly="true" >
 		                                                          <form:option value="미정" class="dropdown-item"></form:option> 
 		                                                          <c:forEach var="mem" items="${mlist}">
 			                                                          <form:option value="${mem.name}" class="dropdown-item">
@@ -198,7 +211,7 @@
                                                           </div>
                                                           	
                                                           <!--위에서 선택하면 자동으로 채어짐 -->
-                                                          <input type="text" id="whatOwner" class="form-control" value="${risk.owner }" aria-label="" aria-describedby="basic-addon1">
+                                                          <input type="text" id="whatOwner" class="form-control" value="${risk.owner }" aria-label="" aria-describedby="basic-addon1" readonly="true">
                                                       </div>
                                                   </div>
                                               </div>
@@ -207,7 +220,7 @@
                                               <div class="form-group row">
                                                   <label class="col-2 col-form-label">해결 계획</label>
                                                   <div class="col-10">
-                                                     <form:textarea rows="10" placeholder="해당 리스크를 어떻게 해결할 것인지 입력하세요." path="solutionPlan" class="form-control" />
+                                                     <form:textarea rows="10" disable="disalbed" placeholder="해당 리스크를 어떻게 해결할 것인지 입력하세요." path="solutionPlan" class="form-control" readonly="true"/>
                                                   </div>
                                               </div>
                                               
@@ -215,7 +228,7 @@
                                               <div class="form-group row">
                                                   <label class="col-2 col-form-label">추후 발생 가능 이슈</label>
                                                   <div class="col-10">
-                                                     <form:textarea rows="10" path="canhappen" class="form-control" placeholder="해당 리스크가 발생했을시 추후에 일어날수 있는 이슈를 입력하세요."/>
+                                                     <form:textarea rows="10" path="canhappen" class="form-control" placeholder="해당 리스크가 발생했을시 추후에 일어날수 있는 이슈를 입력하세요." readonly="true"/>
                                                   </div>
                                               </div>
                                               
@@ -223,7 +236,7 @@
                                               <div class="form-group row">
                                                   <label class="col-2 col-form-label">추후 업데이트 상황 </label>
                                                   <div class="col-10">
-                                                     <form:textarea rows="10" path="updateIssue" class="form-control" placeholder="해당 리스크 등록 후 업데이트가 된 내용을 입력하세요." />
+                                                     <form:textarea rows="10" path="updateIssue" class="form-control" placeholder="해당 리스크 등록 후 업데이트가 된 내용을 입력하세요." readonly="true" />
                                                   </div>
                                               </div>
                                               
@@ -231,7 +244,7 @@
                                               <div class="form-group row">
                                                   <label class="col-2 col-form-label">해결 방법</label>
                                                   <div class="col-10">
-                                                     <form:textarea rows="10" path="realSolution" class="form-control" placeholder="해당 리스크를 실제로 해결한 방법을 입력하세요." />
+                                                     <form:textarea rows="10" path="realSolution" class="form-control" placeholder="해당 리스크를 실제로 해결한 방법을 입력하세요." readonly="true" />
                                                   </div>
                                               </div>
                           							
@@ -241,15 +254,15 @@
 												<div class="col-10">
 													<div class="mt-3" id="statusDiv">
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="statusRadio1" class="custom-control-input" path="status" value="진행중"/>
+															<form:radiobutton id="statusRadio1" class="custom-control-input" path="status" value="진행중" disabled="true" />
 															<label class="custom-control-label text-s" for="statusRadio1">진행중</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="statusRadio2" class="custom-control-input" path="status" value="보류"/>                       
+															<form:radiobutton id="statusRadio2" class="custom-control-input" path="status" value="보류" disabled="true" />                       
 															<label class="custom-control-label text-s" for="statusRadio2">보류</label>
 														</div>
 														<div class="custom-control custom-radio">
-															<form:radiobutton id="statusRadio3" class="custom-control-input" path="status" value="완료"/> 
+															<form:radiobutton id="statusRadio3" class="custom-control-input" path="status" value="완료" disabled="true" /> 
 															<label class="custom-control-label text-s" for="statusRadio3">완료</label>
 														</div>
 													</div>
@@ -307,6 +320,10 @@
 
    <script type="text/javascript">
       $(document).ready(function(){
+    	  
+    	  /* $("#detailForm").children(".required").attr("readonly", "readonly"); */
+
+    	  출처: https://onggun.tistory.com/297 [POOR MAN'S MOODY BLUES]
 		// 담당자선택
 		$("#chargeDiv > .dropdown-item").click(function(){
 			$("#inCharge").val(this.innerHTML);
@@ -375,6 +392,13 @@
          $("#ownerBtn").change(function(){
         	$("#whatOwner").val($("#ownerBtn option:selected").val()) 
          });
+         
+         // 수정하기 버튼
+        $("#modify").click(function(){
+        	alert("클릭");
+        	$('input, textarea').prop('readonly', false);
+        	$('input').prop('disabled', false);
+        });
          
       }); 
    </script>

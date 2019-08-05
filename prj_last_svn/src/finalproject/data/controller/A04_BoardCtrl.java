@@ -1,5 +1,7 @@
 package finalproject.data.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import finalproject.data.service.A04_BoardService;
 import finalproject.vo.Board;
 import finalproject.vo.BoardSch;
+import finalproject.vo.Member;
 
 @Controller
 //controller의 공통적인 url mapping 주소 선언
@@ -24,10 +27,16 @@ public class A04_BoardCtrl {
    
    // board.do?method=list
    @RequestMapping(params = "method=list")
-   public String list(@ModelAttribute("bsch") BoardSch sch, Model d) {
+   public String list(@ModelAttribute("bsch") BoardSch sch, HttpSession session, Model d) {
       //BoardSch : 요청값 처리 및 검색데이터 조회화면에 출력(model+요청)
       //Model : 화면에 list할 데이터 처리를 위한 model 선언
-      System.out.println(sch.getTitle());
+	  Member mem = (Member)session.getAttribute("mem");
+	  String prjno = mem.getPrjno();
+	  sch.setPrjno(prjno);
+	  //가져온 prjno를 service로 보낼 준비를 해준다.
+	  System.out.println("재설정한 prjno:"+sch.getPrjno());
+	  System.out.println("받은 세션 prjno : "+mem.getPrjno());	   
+	  System.out.println(sch.getTitle());
       System.out.println(sch.getWriter());
       d.addAttribute("boardList", service.boardList(sch));
       return "WEB-INF\\view\\pms\\a01_main\\c01_boardList.jsp";
@@ -46,8 +55,14 @@ public class A04_BoardCtrl {
    // 객체 (BoardSch)  
    
    @RequestMapping(params = "method=insert")
-   public String insert(@ModelAttribute("board") Board ins) {
-      System.out.println("답글번호:"+ins.getRefno());
+   public String insert(@ModelAttribute("board") Board ins, HttpSession session, Model d) {
+	Member mem = (Member)session.getAttribute("mem");
+	String prjno = mem.getPrjno();
+	  ins.setPrjno(prjno);
+	  System.out.println("재설정한 prjno:"+ins.getPrjno());
+	System.out.println("받은 세션 prjno : "+mem.getPrjno());	
+
+	   System.out.println("답글번호:"+ins.getRefno());
       
       //DB입력 처리시
       //데이터를 입력시 처리..: 원래 답글에는 no가 있기 때문에 구분처리..

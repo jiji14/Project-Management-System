@@ -44,4 +44,9 @@ public class A07_TodoService {
 	public void makeShow(String taskid) {
 		dao.makeShow(taskid);
 	}
+	
+	/* 디테일 */
+	public ToDoList detail(String taskid) {
+		return dao.detail(taskid);
+	}
 }
