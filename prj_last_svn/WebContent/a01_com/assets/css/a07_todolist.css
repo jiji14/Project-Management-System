@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* 본문전체 감싸기 */
+#container-fluid{
+	display:flex;
+	flex-direction:column;
+	}
+
+.listimg{
+	width:30px;
+	margin:5px 10px 0px 15px;
+}
+#todolist{
+	font-size:30px;
+	color:#17a2b8;
+	letter-spacing:3px;
+	text-shadow: 1px 1px 2px gray;
+}
+.title{
+	color:#343a40;
+	padding:10px;
+	padding-top:0px;
+}
+/*list 부분*/
+.listBox{
+	display:flex;
+	flex-direction:low;
+	justify-content:space-around;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin:10px;
+}
+
+.listBox>div{
+	background:rgba(23,162,184,0.2);
+	flex-basis:28%;
+	min-width: 300px;
+  	padding:10px;
+  	box-shadow: 0 15px 30px -5px rgba(0, 0, 0, .4);
+  	margin-bottom:20px;
+}
+
+.workCard{
+	background:rgba(255,255,255, 0.4);
+	border-radius:12px;
+	margin:10px;
+	padding:12px;
+}
+.workCard>span{
+	font-size:15px;
+}
+.addBox{	
+	padding:12px;
+}
+.addLabel{
+	cursor:pointer;
+	margin:0;
+}
+.hideBox{
+	display: flex;
+	justify-content: flex-end;
+}
+.hideLabel{
+	cursor:pointer;
+	margin:0 5px 0 0;
+}
+.workcontent>div>span:first-child{
+	padding-right:10px;
+}
+.icons, .ion{
+	margin-right:7px;
+}
+
+.ion-md-eye-off, .ion-md-heart-empty{
+	color:#343a40;
+	cursor:pointer;
+}
+
+.ion-md-heart{
+	color:#e83e8c;
+	cursor:pointer;
+}
+
+.chartBox{
+	margin-top:20px;
+	font-size:50px;
+	letter-spacing:5px;
+	text-align:center	
+}
+
+#chartdiv {
+	width: 100%;
+	height: 400px;
+	align-self: center;
+}
+
+/* 프로젝트가 없을때 */
+.noProject{
+	margin:20px;
+}
+.goPrj{
+	font-size:25px !important;
+	margin-bottom:20px !important;
+}
+#goProject{
+	color: #566167;
+}
+
+	

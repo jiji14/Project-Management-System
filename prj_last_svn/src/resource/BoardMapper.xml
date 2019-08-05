@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.A04_BoardDao">
+<!--  
+2019.07.01 review
+
+DAO 인터페이스 명/ mapper namespace: springweb.a03_data.dao.A04_BoardDao
+기능 메서드명 : public ArrayList<Board> boardList(BoardSch sch)
+   1) return 데이터 타입 : ArrayList<Board>
+   2) 메서드명 : boardList (dao와 같게. select id="boardList")
+   3) 입력되는 입력 데이터 타입 : BoardSch sch (parameterType)
+   
+
+
+1. namespace 명은 DAO 인터페이스 명으로 설정
+2. 기능 sql에서 사용되는 속성과 기능 메서드와 연관 관계
+   1) id : 기능 메서드명
+   2) resultType : 리턴되는 단일 유형의 데이터
+      ex) int, Board
+      mybatis.Spring.xml에서 선언된 VO의 alias 명의 단일 객체로 할당하거나
+      int, String 형태의 type data 유형을 정의한다.
+      
+      ex) public int boardList(BoardSch sch)          : resultType = "int"
+      ex) public String boardList(BoardSch sch)      : resultType = "String"
+      ex) public Board boardList(BoardSch sch)      : resultType = "boardsch"
+      
+      resultMap : 리턴되는 배열 유형의 데이터 
+         ex) ArrayList<Board>, String[] 
+         단위 데이터가 모여서 이루어진 resultMap 이라는 객체를 선언해 주고, 해당 id를 호출한다.
+         resultMap type="board" id="boardMap"
+         resultMap = "boardMap"
+         
+         
+
+-->
+			<resultMap type="board" id="boardMap" />
+			<resultMap type="String" id="fileMap" /> <!-- String은 2차원 배열로 가져오겠다는 의미이다. -->
+			
+<!-- 총건수 가져오기 int totCnt(BoardSch sch) -->
+	<select id="totCnt" parameterType="boardSch" resultType="int">  <!-- 하나만 가져오니 resultType -->
+	      SELECT COUNT(*) 
+	      FROM BOARD a
+	      where 1=1
+	      <if test="title != null and title != ''">  <!-- 제목이 null이나 공백이 아니고  title이 jsp에서 다음과 같을때-->
+	         and title like '%'||#{title}||'%'
+	      </if>
+	      <if test="writer != null and writer != ''"> <!-- 이어서 작성자도 받아오면 총건 수를 board a 에서 받아온다~ -->
+	         and writer like '%'||#{writer}||'%'
+	      </if>
+
+	</select>
+
+	<select id = "boardList" parameterType = "boardSch" resultMap = "boardMap"> <!-- 객체로 여러개를 가져오니 resultMap -->
+	      SELECT * FROM (
+	      SELECT ROWNUM rn, a.*, level FROM BOARD a <!-- 답글의 계층을 표현하기 위해 level. 중간에 삭제된거를 인식 못하니 삭제된걸 제외하고 rownumber를 매긴다. -->
+	      where 1=1
+	      <if test="title != null and title != ''">
+	         and title like '%'||#{title}||'%'
+	      </if>
+	      <if test="writer != null and writer != ''">
+	         and writer like '%'||#{writer}||'%'
+	      </if>
+	      
+	         START WITH refno=0
+	         CONNECT BY PRIOR no = refno
+	         ORDER siblings BY NO DESC )
+	         WHERE rn BETWEEN #{start} AND #{end}      
+	</select>
+
+<!-- 
+ refno 기준(start with refno=0 최상위 계층 설정)으로 해당
+ refno와 no를 연결과 처리.(connect by prior no = refno)
+ no와 refno가 연관관계가 있는 것을 먼저 list한다.
+ 글의 순서를 no기준으로 역순 정렬하되, 답글도 역순으로 정렬 처리..
+ order siblings by no desc
+ level : 계층의 레벨을 처리해준다.
+ 페이징 처리의 핵심 sql keyword는 rownum, 데이터가 로딩하는 순간,
+ 고유의 번호를 1~ 데이터 건수로 불러 처리 해준다.
+ -->	
+
+
+
+
+
+
+
+
+
+<insert id="boardInsert" parameterType="board">
+   insert into board values(board_seq.nextval,#{refno},#{title},#{content},#{writer},0,sysdate,sysdate,'',#{category})
+</insert>
+
+<!-- insertBoardFile(String fname) -->
+<insert id="insertBoardFile" parameterType="String">
+   INSERT INTO boardfile values(board_seq.currval,#{fname},sysdate,sysdate,'')
+</insert>
+<!-- 등록하는 번호와 동일한 번호로 입력하도록 설정(currval) -->
+
+<!-- Board getBoard(int no) -->
+<select id="getBoard" parameterType="int" resultType="board">
+   SELECT * FROM board
+   where no = #{no}
+
+</select>
+<!-- 조회 시, 조회수 카운트 업 -->
+<update id="uptReadCnt" parameterType="int">
+   UPDATE board
+      set readcnt = readcnt+1
+   where no = #{no}
+
+</update>
+
+<!-- String[] getFiles(int no) - 파일 이름만 가져오도록 -->
+<select id="getFiles" parameterType="int" resultMap="fileMap">
+      SELECT fname FROM boardfile WHERE NO = #{no}
+</select>
+
+<!-- 조회 처리 -->
+<update id="updateBoard" parameterType="board">
+   UPDATE board
+      set title = #{title},
+         content = #{content},
+         writer = #{writer},
+         uptdte = sysdate
+      where no = #{no}
+</update>
+
+<!-- void deleteBoard(int no) 삭제 처리 -->
+<delete id="deleteBoard" parameterType="int">
+   DELETE FROM board
+   WHERE no = #{no}
+
+</delete>
+
+
+
+</mapper>

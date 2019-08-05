@@ -1,0 +1,144 @@
+@charset "UTF-8";
+
+/* 상단 - 리스크 타이틀  */
+
+#riskTitle{
+	font-size:30px;
+	color:#17a2b8;
+	letter-spacing:10px;
+	text-shadow: 1px 1px 2px gray;
+}
+.riskimg{
+	width:50px;
+	margin-left: 5px;
+}
+
+/* 상단 - 리스크 등록부분  */
+#addImg{
+	width:25px;
+	height:25px;
+	margin-bottom:4px;
+}
+#addh3{
+	display:inline-block;
+	padding:5px;
+	font-weight:bold;
+}
+#addRisk{
+	cursor: pointer;
+}
+
+/*컴텐츠 감싸는 부분*/
+.content_container{
+	display: flex;
+	flex-direction:column;
+}
+
+/* 차트 감싸는 부분 */
+h4{
+ 	letter-spacing:5px; 
+}
+h5{
+	letter-spacing:10px;
+}
+#portlet3{
+	display: flex;
+	flex-direction:row;
+	align-items: baseline;
+	justify-content: center;
+}
+
+/* 차트 div */
+#chart_main{
+	margin-left:15px;
+	text-align:center;
+	flex-direction:column;
+	align-items: center;
+	justify-content: center;
+}
+#chartTitle{
+	font-size:20px;
+}
+#risk_h5{
+	margin:20px 0;	
+}
+
+/* progress bar div*/
+.chart_text{
+	width:25%;
+}
+#progress-bar{
+	width:30%;
+	background-color:#17a2b8;
+}
+.bar{
+	width:70%;
+	margin: 0 auto;
+	margin-bottom:25px;
+	font-size:14px;
+	font-weight:bolder;
+	letter-spacing:2px;
+	color:#6c757d;
+}
+.portlet-title{
+	padding-left:15px;
+	color: #666f7b;
+	font-weight:600;
+}
+.bar_top{
+	text-align:center;
+}
+.bar_content{
+	margin-top:60px;
+}
+td, th{
+	cursor:pointer;
+}
+
+/* 차트 설명부분 */
+.infoline{
+	margin:20px;
+	display: flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content: center;
+	
+}
+/* 높음 */
+.span1{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	background:#34c73b;
+	margin:5px;
+}
+/* 중간 */
+.span2{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	background:#3960d1;
+	margin:5px;
+}
+/* 낮음 */
+.span3{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	background:#fd7e14;
+	margin:5px;
+}
+
+
+/* 프로젝트가 없을때 */
+.noProject{
+	margin:20px;
+}
+.goPrj{
+	font-size:25px !important;
+	margin-top: 0px !important;
+	margin-bottom:20px !important;
+}
+#goProject{
+	color: #566167;
+}      

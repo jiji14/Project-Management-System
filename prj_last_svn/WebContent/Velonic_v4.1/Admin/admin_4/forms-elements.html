@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Velonic - Responsive Bootstrap 4 Admin Dashboard Template</title>
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
+        <!-- your custom css -->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <script src="assets/js/modernizr.min.js"></script>
+
+    </head>
+
+
+    <body>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="index.html" class="logo">
+                        <span>
+                            <img src="assets/images/logo.png" alt="" height="18">
+                        </span>
+                        <i>
+                            <img src="assets/images/logo_sm.png" alt="" height="22">
+                        </i>
+                    </a>
+                </div>
+
+                <nav class="navbar-custom">
+
+                    <ul class="list-inline float-right mb-0">
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-email-outline noti-icon waves-light waves-effect"></i>
+                            </a>
+                            <span class="badge badge-purple noti-icon-badge">3</span>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-right dropdown-arrow dropdown-lg">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Chat</h5>
+                                </div>
+
+                                <div class="slimscroll" style="max-height: 230px;">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Cristina Pride</p>
+                                        <p class="text-muted mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Sam Garret</p>
+                                        <p class="text-muted mb-0 user-msg">Yeah everything is fine</p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Karen Robinson</p>
+                                        <p class="text-muted mb-0 user-msg">Wow that's great</p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon"><img src="assets/images/users/avatar-5.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Sherry Marshall</p>
+                                        <p class="text-muted mb-0 user-msg">Hi, How are you? What about our next meeting</p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon"><img src="assets/images/users/avatar-6.jpg" class="img-fluid rounded-circle" alt="" /> </div>
+                                        <p class="notify-details">Shawn Millard</p>
+                                        <p class="text-muted mb-0 user-msg">Yeah everything is fine</p>
+                                    </a>
+                                </div>
+
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center text-dark notify-item notify-all">
+                                    View all <i class="fi-arrow-right"></i>
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline noti-icon waves-light waves-effect"></i>
+                            </a>
+                            <span class="badge badge-pink noti-icon-badge">4</span>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-right dropdown-arrow dropdown-lg">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="m-0"><span class="float-right"><a href="" class="text-dark"><small>Clear All</small></a> </span>Notification</h5>
+                                </div>
+
+                                <div class="slimscroll" style="max-height: 230px;">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-success"><i class="mdi mdi-comment-account-outline"></i></div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">1 min ago</small></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-info"><i class="mdi mdi-account-plus"></i></div>
+                                        <p class="notify-details">New user registered.<small class="text-muted">5 hours ago</small></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-danger"><i class="mdi mdi-heart"></i></div>
+                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">3 days ago</small></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-warning"><i class="mdi mdi-comment-account-outline"></i></div>
+                                        <p class="notify-details">Caleb Flakelar commented on Admin<small class="text-muted">4 days ago</small></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-purple"><i class="mdi mdi-account-plus"></i></div>
+                                        <p class="notify-details">New user registered.<small class="text-muted">7 days ago</small></p>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="notify-icon text-primary"><i class="mdi mdi-heart"></i></div>
+                                        <p class="notify-details">Carlos Crouch liked <b>Admin</b><small class="text-muted">13 days ago</small></p>
+                                    </a>
+                                </div>
+
+                                <!-- All-->
+                                <a href="javascript:void(0);" class="dropdown-item text-center text-dark notify-item notify-all">
+                                    View all <i class="fi-arrow-right"></i>
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <i class="noti-icon"><img src="assets/images/users/avatar-1.jpg" alt="user" class="img-fluid rounded-circle"></i>
+                                <span class="profile-username ml-2 text-muted">Thompson </span> <span class="mdi mdi-menu-down text-muted"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-menu-right profile-dropdown ">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5 class="text-overflow"><small>Welcome ! John</small> </h5>
+                                </div>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-account-circle"></i> <span>Profile</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-settings"></i> <span>Settings</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-lock-open"></i> <span>Lock Screen</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="mdi mdi-power"></i> <span>Logout</span>
+                                </a>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left waves-light waves-effect">
+                                <i class="mdi mdi-menu"></i>
+                            </button>
+                        </li>
+                        <li class="hide-phone app-search">
+                            <form role="search" class="">
+                                <input type="text" placeholder="Search..." class="form-control">
+                                <a href=""><i class="fa fa-search"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+
+                </nav>
+
+            </div>
+            <!-- Top Bar End -->
+
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu" id="side-menu">
+                            <li class="menu-title">Navigation</li>
+                            <li>
+                                <a href="index.html">
+                                    <i class="ion-md-speedometer"></i> <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-basket"></i> <span> UI Elements </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="ui-typography.html">Typography</a></li>
+                                    <li><a href="ui-buttons.html">Buttons</a></li>
+                                    <li><a href="ui-fontawesome.html">Font Awesome Icons</a></li>
+                                    <li><a href="ui-materialdesign.html">Material Design Icons</a></li>
+                                    <li><a href="ui-ionicons.html">Ion Icons</a></li>
+                                    <li><a href="ui-cards.html">Cards</a></li>
+                                    <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
+                                    <li><a href="ui-modals.html">Modals</a></li>
+                                    <li><a href="ui-bootstrap-ui.html">BS Elements</a></li>
+                                    <li><a href="ui-progressbars.html">Progress Bars</a></li>
+                                    <li><a href="ui-notification.html">Notification</a></li>
+                                    <li><a href="ui-sweet-alert.html">Sweet-Alert</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-ios-apps"></i> <span> Components </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="components-grid.html">Grid</a></li>
+                                    <li><a href="components-portlets.html">Portlets</a></li>
+                                    <li><a href="components-widgets.html">Widgets</a></li>
+                                    <li><a href="components-nestable-list.html">Nesteble</a></li>
+                                    <li><a href="components-calendar.html">Calendar</a></li>
+                                    <li><a href="components-range-sliders.html">Range Slider</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-paper"></i><span class="badge badge-danger float-right">9</span> <span> Forms </span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="forms-elements.html">General Elements</a></li>
+                                    <li><a href="forms-validation.html">Form Validation</a></li>
+                                    <li><a href="forms-advanced.html">Advanced Form</a></li>
+                                    <li><a href="forms-wizard.html">Form Wizard</a></li>
+                                    <li><a href="forms-editor.html">WYSIWYG Editor</a></li>
+                                    <li><a href="forms-code-editor.html">Code Editors</a></li>
+                                    <li><a href="forms-uploads.html">Multiple File Upload</a></li>
+                                    <li><a href="forms-image-crop.html">Image Crop</a></li>
+                                    <li><a href="forms-xeditable.html">X-Editable</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-ios-list"></i><span> Tables </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="tables-basic.html">Basic Tables</a></li>
+                                    <li><a href="tables-datatable.html">Data Table</a></li>
+                                    <li><a href="tables-editable.html">Editable Table</a></li>
+                                    <li><a href="tables-responsive.html">Responsive Table</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-pie"></i><span> Charts </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="charts-morris.html">Morris Chart</a></li>
+                                    <li><a href="charts-chartjs.html">Chartjs</a></li>
+                                    <li><a href="charts-flot.html">Flot Chart</a></li>
+                                    <li><a href="charts-rickshaw.html">Rickshaw Chart</a></li>
+                                    <li><a href="charts-peity.html">Peity Chart</a></li>
+                                    <li><a href="charts-c3.html">C3 Chart</a></li>
+                                    <li><a href="charts-other.html">Other Chart</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-mail"></i><span class="badge badge-warning float-right">12</span> <span> Mail </span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="email-inbox.html">Inbox</a></li>
+                                    <li><a href="email-compose.html">Compose Mail</a></li>
+                                    <li><a href="email-read.html">View Mail</a></li>
+                                    <li><a href="email-templates.html">Email Templates</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-map"></i> <span> Maps </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="maps-gmap.html"> Google Map</a></li>
+                                    <li><a href="maps-vector.html"> Vector Map</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);"><i class="ion-md-copy"></i> <span> Pages </span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="pages-profile.html">Profile</a></li>
+                                    <li><a href="pages-timeline.html">Timeline</a></li>
+                                    <li><a href="pages-invoice.html">Invoice</a></li>
+                                    <li><a href="pages-contact.html">Contact-list</a></li>
+                                    <li><a href="pages-login.html">Login</a></li>
+                                    <li><a href="pages-register.html">Register</a></li>
+                                    <li><a href="pages-recoverpw.html">Recover Password</a></li>
+                                    <li><a href="pages-lock-screen.html">Lock Screen</a></li>
+                                    <li><a href="pages-blank.html">Blank Page</a></li>
+                                    <li><a href="pages-404.html">404 Error</a></li>
+                                    <li><a href="pages-404_alt.html">404 alt</a></li>
+                                    <li><a href="pages-500.html">500 Error</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <h4 class="page-title float-left">General Elements</h4>
+
+                                    <ol class="breadcrumb float-right">
+                                        <li class="breadcrumb-item"><a href="#">Velonic</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                                        <li class="breadcrumb-item active">General Elements</li>
+                                    </ol>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Input Types</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <form class="form-horizontal" role="form">
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Text</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" value="Some text value...">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label" for="example-email">Email</label>
+                                                    <div class="col-10">
+                                                        <input type="email" id="example-email" name="example-email" class="form-control" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Password</label>
+                                                    <div class="col-10">
+                                                        <input type="password" class="form-control" value="password">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Placeholder</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" placeholder="placeholder">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Text area</label>
+                                                    <div class="col-10">
+                                                        <textarea class="form-control" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Readonly</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" readonly="" value="Readonly value">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Disabled</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" disabled="" value="Disabled value">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Static control</label>
+                                                    <div class="col-10">
+                                                        <p class="form-control-static">email@example.com</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Helping text</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" placeholder="Helping text">
+                                                        <span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Input Select</label>
+                                                    <div class="col-10">
+                                                        <select class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                        <h6>Multiple select</h6>
+                                                        <select multiple class="form-control">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Default file input</label>
+                                                    <div class="col-10">
+                                                        <input type="file" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Date</label>
+                                                    <div class="col-10">
+                                                        <input class="form-control" type="date" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Month</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="month" name="month">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Time</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="time" name="time">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Week</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="week" name="week">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Number</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="number" name="number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">URL</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="url" name="url">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Search</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="search" name="search">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Tel</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="tel" name="tel">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Color</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="color" name="color">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Range</label>
+                                                    <div class="col-md-10">
+                                                        <input class="form-control" type="range" name="range" min="0" max="10">
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- end card -->
+
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+                                
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Select menu</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <select class="custom-select mt-3">
+                                            <option selected>Open this select menu</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Checkboxes and radios</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mt-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label text-xs" for="customCheck1">Check this custom checkbox</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                <label class="custom-control-label text-xs" for="customCheck2">Check this custom checkbox</label>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label text-xs" for="customRadio1">Toggle this custom radio</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                <label class="custom-control-label text-xs" for="customRadio2">Or toggle this other custom radio</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Input Sizes & Group</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <div>
+                                            <form role="form" class="form-horizontal">
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label" for="example-input-small">Small</label>
+                                                    <div class="col-10">
+                                                        <input type="text" id="example-input-small" name="example-input-small" class="form-control form-control-sm" placeholder=".input-sm">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label" for="example-input-normal">Normal</label>
+                                                    <div class="col-10">
+                                                        <input type="text" id="example-input-normal" name="example-input-normal" class="form-control" placeholder="Normal">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label" for="example-input-large">Large</label>
+                                                    <div class="col-10">
+                                                        <input type="text" id="example-input-large" name="example-input-large" class="form-control form-control-lg" placeholder=".input-lg">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Grid Sizes</label>
+                                                    <div class="col-10">
+                                                        <input type="text" class="form-control" placeholder=".col-sm-4">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Static</label>
+                                                    <div class="col-10">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text" id="basic-addon1">@</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Dropdowns</label>
+                                                    <div class="col-10">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <button class="btn btn-primary waves-effect waves-light dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                                                                <div class="dropdown-menu">
+                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                                    <div role="separator" class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item" href="#">Separated link</a>
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-2 col-form-label">Buttons</label>
+                                                    <div class="col-10">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-dark waves-effect waves-light" type="button">Button</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Basic Example</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email address</label>
+                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Password</label>
+                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <input id="checkbox0" type="checkbox">
+                                                    <label for="checkbox0">
+                                                        Check me out
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Horizontal form</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3" class="col-3 col-form-label">Email</label>
+                                                <div class="col-9">
+                                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputPassword3" class="col-3 col-form-label">Password</label>
+                                                <div class="col-9">
+                                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="inputPassword5" class="col-3 col-form-label">Re Password</label>
+                                                <div class="col-9">
+                                                    <input type="password" class="form-control" id="inputPassword5" placeholder="Retype Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row justify-content-end">
+                                                <div class=" col-9">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="checkbox2" type="checkbox">
+                                                        <label for="checkbox2">
+                                                            Check me out !
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0 justify-content-end row">
+                                                <div class="col-9">
+                                                    <button type="submit" class="btn btn-info waves-effect waves-light">Sign in</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end row -->
+
+                        <!-- Inline Form -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Inline Form</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row m-b-30">
+                                            <div class="col-sm-12">
+                                                <form class="form-inline">
+                                                    <div class="form-group">
+                                                        <label for="staticEmail2" class="sr-only">Email</label>
+                                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+                                                    </div>
+                                                    <div class="form-group mx-sm-3">
+                                                        <label for="inputPassword2" class="sr-only">Password</label>
+                                                        <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Confirm identity</button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12">
+                                                <h6 class="font-13 mt-4">Auto-sizing</h6>
+
+                                                <form>
+                                                    <div class="form-row align-items-center">
+                                                        <div class="col-auto">
+                                                            <label class="sr-only" for="inlineFormInput">Name</label>
+                                                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                                            <div class="input-group mb-2">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text">@</div>
+                                                                </div>
+                                                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <div class="form-check mb-2">
+                                                                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                                                                <label class="form-check-label" for="autoSizingCheck">
+                                                                    Remember me
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+
+
+                        <!-- Form row -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="m-t-0 header-title mb-0">Form row</h4>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4" class="col-form-label">Email</label>
+                                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4" class="col-form-label">Password</label>
+                                                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputAddress" class="col-form-label">Address</label>
+                                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputAddress2" class="col-form-label">Address 2</label>
+                                                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputCity" class="col-form-label">City</label>
+                                                    <input type="text" class="form-control" id="inputCity">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputState" class="col-form-label">State</label>
+                                                    <select id="inputState" class="form-control">Choose</select>
+                                                </div>
+                                                <div class="form-group col-md-2">
+                                                    <label for="inputZip" class="col-form-label">Zip</label>
+                                                    <input type="text" class="form-control" id="inputZip">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox"> Check me out
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Sign in</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    2015 - 2019 © Velonic - Coderthemes.com
+                </footer>
+
+            </div>
+
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+        <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/metisMenu.min.js"></script>
+        <script src="assets/js/waves.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+
+        <!-- App js -->
+        <script src="assets/js/jquery.core.js"></script>
+        <script src="assets/js/jquery.app.js"></script>
+
+    </body>
+</html>

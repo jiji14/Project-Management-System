@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery UI Basic</title>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <style>
+        .box { width: 100px; height: 100px; float: left; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+			// .draggable() : 해당 객체가 드래깅 처리가 된다.
+			/*
+			1. grid[width, height] : 해당 격자 단위로 드래깅되게 처리..
+			2. stop:function(event, ui){ : 이동 되었다가 중단되었을 때 이벤트 처리..
+					ui.offset.top : y축 위치 값 가져오기..
+					ui.offset.left : x축 위치 값 가져오기..
+			}
+			*/
+			$("div.box").draggable({
+				grid:[102,102],
+				stop:function(event,ui){
+					alert(ui.offset.top+":"+ui.offset.left);
+				}
+				
+			});
+        });
+    </script>
+</head>
+<body>
+    <div class="box ui-widget-content"></div>
+    <div class="box ui-widget-content"></div>
+    <div class="box ui-widget-content"></div>
+    <div class="box ui-widget-content"></div>
+</body>
+</html>

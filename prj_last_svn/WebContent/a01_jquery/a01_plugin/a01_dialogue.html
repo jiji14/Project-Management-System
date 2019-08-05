@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery UI Basic</title>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <style>
+        body { font-size: 62.5% }
+        h1 { text-align:center; }
+        input[type="text"], label {
+            margin-bottom: 12px; padding: .4em; 
+            width: 95%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+			// 1. jquery ui 시작..
+			//    $(객체).핵심메서드({속성:속성값,});
+			
+			// modal : 다이얼로그 창이 열렸을 때, 창이외에 다른 요소 객체를 비활성화 처리하는
+			// 것을 말한다.
+			$("#dialog").dialog({
+				autoOpen:false,
+				buttons:{
+					"등록":function(){ 
+						//alert("등록!!"); 
+						// 입력 내용을 가져와서 처리하기..(ajax)
+						var eventName = $("#event-name").val();
+						var eventDate = $("#event-date").val();
+						// 출력..
+						// 입력된 데이터를 h2로 처리하여 div show에 등록 처리..
+						$("<h2></h2>").html(eventName+" : "+eventDate).appendTo("#show");
+						// 초기화 처리.
+						$("#event-name").val("");
+						$("#event-date").val("");
+						// 창닫기
+						$("#dialog").dialog("close");
+						
+					},
+					"초기":function(){ 	
+						$("#event-name").val("");
+						$("#event-date").val(""); 
+					},
+					"창닫기":function(){ 
+						$("#dialog").dialog("close");
+					}
+				},
+				modal:true
+			});
+			// 2. 날짜 처리하는 datepicker
+			//    dateFormat: yy mm dd를 통한 날짜 형식지정..
+			//    numberOfMonths : 팝업되는 월의 갯수 선언..
+			
+			$("#event-date").datepicker({
+				dateFormat:"yy년  mm월  dd일",
+				numberOfMonths:3
+			});
+			$("#openBtn").click(function(){
+				// 해당 다이얼로그 창 열기..
+				$("#dialog").dialog("open");
+			});
+        });
+    </script>
+</head>
+<body>
+	<input type="button" id="openBtn" value="창열기" />
+	<input type="text"  value="입력값" />
+    <div id="dialog" title="jQuery UI dialog">
+        <h1>Hello jQUery UI .. !</h1>
+        <label for="event-name">일정 이름</label>
+        <input id="event-name" type="text" />
+        <label for="event-date">날짜</label>
+        <input id="event-date" type="text" />
+    </div>
+    <div id="show"></div>
+    
+    
+</body>
+</html>

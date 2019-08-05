@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery UI Basic</title>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <style>
+        * { margin: 0px; padding: 0px; } 
+        body { font-size: 62.5%; }
+
+        .item {margin: 3px;padding: 5px;}
+        .item > img { width: 100px; height: 100px;}
+
+        #wrap { overflow: hidden; }
+        #wrap > div { float: left; }
+        #dock { position:fixed; min-height: 120px; width: 100%; bottom: 0px; z-index: 1;}
+        #dock > div { float: right; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+				// # draggable, droppable 플러그인 종합예제..
+				// 1. 이미지 로딩..
+				for(var idx=0;idx<=20;idx++){
+					var icon="<div class='ui-widget-content ui-corner-all item'>";
+						icon+="<img src='"+idx+".png'/></div>";
+					$("#wrap").append(icon);
+				}
+				// 2. 해당 아이콘 div를 draggable 플러그인 설정..
+				// 	1) 상세 옵션 설정. div가 가장 앞으로 나오게 설정. zIndex
+				//  2) 해당 선택 div를 복사하여 처리  helper:'clone'
+				$("#wrap > div").draggable({
+					zIndex:100,
+					helper:'clone'
+				});
+				// 3. 외부에 객체를 drop할 수 있게 droppable 플러그인 설정..
+				// 	1) 다른 지정된 요소 객체가 drop될 수 있게 처리  accept
+				//  2) 들어와서 처리되게.. drop:function(){}
+				$("#dock").droppable({
+					accept:"#wrap > div",
+					drop:function(event, ui){
+						// ui.draggable : 드래그된 객체를 지정.
+						//alert( $(ui.draggable).html() );
+						//  드래그한 객체를 #dock div에 추가..
+						// .fadeOut() : 천천히 사라지는 애니메이션 효과..
+						// .fadeIn() :천천히 나타나는 애니메이션 효과						
+						//$(ui.draggable).appendTo("#dock");
+						$(ui.draggable).fadeOut(function(){
+							$(this).appendTo("#dock").fadeIn();
+						});	
+					}
+				});
+				// 4. 전체 body도 droppable 플러그인 사용되게 처리.
+				//  ex) #dock에서  #wrap로 이동되게 처리..
+				$("body").droppable({
+					accept:"#dock>div",
+					drop:function(event,ui){
+						$(ui.draggable).fadeOut(function(){
+							$(this).appendTo("#wrap").fadeIn();
+						});
+					}
+				});
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrap">
+
+    </div>
+    <div id="dock" class="ui-state-error">
+
+    </div>
+</body>
+</html>

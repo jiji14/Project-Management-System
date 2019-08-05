@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.A06_RiskDao">
+<resultMap type="risk" id="riskMap" />
+<resultMap type="riskdegree" id="riskdgrMap" />
+<resultMap type="posibility" id="posibileMap" />
+<resultMap type="rgsdte" id="rgsdteMap" />
+<resultMap type="status" id="statusMap" />
+<resultMap type="taskforRisk" id="taskMap" />
+<resultMap type="memforRisk" id="memMap" />
+<resultMap type="member" id="memberMap" />
+
+	
+	<!-- 전체 목록 -->
+	<select id="riskList" parameterType="String" resultMap="riskMap">
+		select * FROM risk WHERE prjno = #{prjno}	
+	</select>
+	
+	<!-- 위험도 차트 -->
+	<select id="degreeCount" parameterType="String" resultMap="riskdgrMap">
+		select riskdegree, count(*) count from risk WHERE prjno = #{prjno} 
+		GROUP BY RISKDEGREE ORDER BY DECODE(riskdegree,'높음',1,'중간',2,'낮음',3)
+	</select>
+	
+	<!-- 가능성 차트 -->
+	<select id="posibleCount" parameterType="String" resultMap="posibileMap">
+		SELECT posibility, round((Count/sum)*100) count FROM (SELECT * FROM (select POSIBILITY, count(*) count from risk WHERE prjno = #{prjno}
+		GROUP BY POSIBILITY) a, 
+		(SELECT SUM(count) sum FROM (select POSIBILITY, count(*) count from risk WHERE prjno = #{prjno}
+		GROUP BY POSIBILITY)) b) c ORDER BY DECODE(POSIBILITY,'높음',1,'중간',2,'낮음',3)
+	</select>
+	
+	<!-- 진행상태 차트 -->
+	<select id="statusCount" parameterType="String" resultMap="statusMap">
+		SELECT status, round((Count/sum)*100) count 
+		FROM (SELECT * FROM (select status, count(*) count from risk WHERE prjno = #{prjno}
+		GROUP BY status) a, 
+		(SELECT SUM(count) sum FROM (select status, count(*) count 
+		from risk WHERE prjno = #{prjno}
+		GROUP BY status)) b) c ORDER BY DECODE(status,'진행중',1,'보류',2,'완료',3)
+	</select>	
+	
+	<!-- 등록날짜 차트 -->
+	<select id="rgsdteCount" parameterType="String" resultMap="rgsdteMap">
+		<![CDATA[ 
+		SELECT getRgsdte, round((Count/sum)*100) count FROM
+		(SELECT getRgsdte, count(*) count from
+		(SELECT CASE WHEN getRgsdte<7 THEN '일주일이내' WHEN getRgsdte>=7 AND 
+		getRgsdte<30 THEN '한달이내' ELSE '한달이후' END AS getRgsdte
+		FROM (SELECT riskno, ceil(sysdate-rgsdte) getRgsdte FROM risk WHERE prjno=#{prjno}))
+		GROUP BY getRgsdte ORDER BY getRgsdte) a, 
+		(SELECT sum(count) sum FROM(select rgsdte, count(*) count from risk 
+		WHERE prjno = #{prjno} GROUP BY rgsdte)) b
+		]]> 
+	</select>	
+
+	<!-- 상세내역 -->
+	<select id="riskDetail" parameterType="String" resultType="risk">
+		select * from risk where riskno = #{riskno}
+	</select>
+
+	
+	<!-- 등록 -->
+	<insert id="riskInsert" parameterType="risk">
+		insert into risk values('risk'||risk_seq.nextval, #{prjno}, #{title}, #{taskname}, #{description},
+		#{riskdegree},#{posibility}, #{owner}, #{solutionPlan}, #{canhappen},#{updateIssue},
+		#{realSolution}, #{status}, sysdate)
+	</insert>
+	
+	<!-- 등록시 taskname 보여주는 -->
+	<select id="taskList" parameterType="String" resultMap="taskMap">
+		SELECT *FROM TASKS WHERE prjno = #{prjno}
+	</select>
+	
+	<!-- 등록시 membername 보여주는 -->
+	<select id="mnameList" parameterType="String" resultMap="memMap">
+		SELECT name, a.prjno prjno FROM members a, membership b WHERE a.prjno = #{prjno} AND a.activation = '활성화'
+		AND a.MEMNO = b.MEMNO
+	</select>
+	
+	<!-- Member 권한 보여주는 -->
+	<select id="memAuth" parameterType="member" resultType="memforRisk">
+		SELECT name, a.prjno prjno, auth FROM members a, membership b WHERE b.prjno = #{prjno}
+		AND a.prjno = b.prjno AND a.MEMNO = b.MEMNO AND b.MEMNO = #{memno}
+	</select>
+	
+	<!-- 수정 -->
+	<update id="riskUpdate" parameterType="risk">
+		UPDATE risk SET TITLE=#{title}, TASKNAME=#{taskname}, DESCRIPTION=#{description},
+		RISKDEGREE=#{riskdegree}, POSIBILITY=#{posibility}, OWNER=#{owner}, SOLUTIONPLAN=#{solutionPlan},
+		CANHAPPEN=#{canhappen}, UPDATEISSUE=#{updateIssue}, REALSOLUTION=#{realSolution}, status=#{status}
+		WHERE riskno = #{riskno}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="riskDelete" parameterType="String">
+		DELETE risk WHERE riskno=#{riskno}
+	</delete>
+	
+
+
+</mapper>
+
+
+<!-- 
+SELECT a.*, b.memno FROM tasks a, assigs b WHERE a.assigsId = b.assigsId AND b.memno = 'memno1000' 
+AND a.isHidden = 0 AND progress=0 AND a.prjno = 'pro10100'
+AND ((select ROUND(extract(day from (systimestamp - to_date('01011970', 'ddmmyyyy'))) * 24 * 3600 * 1000
++ extract(hour from (systimestamp - to_date('01011970', 'ddmmyyyy'))) * 3600 * 1000
++ extract(minute from (systimestamp - to_date('01011970', 'ddmmyyyy'))) * 60  * 1000
++ extract(second from (systimestamp - to_date('01011970', 'ddmmyyyy'))) * 1000) timestap_to_secs
+from dual)-enddate) <= 604800000;
+ -->

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery UI Basic</title>
+    <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <style>
+        .box { padding: 5px; }
+        .box p { margin: 0px; padding: 5px; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+			// jquery ui button 플러그인 사용.
+			$("#radio").buttonset();
+			reset();
+			// radio 하위에  form 요소객체들을 클릭시 마다, 해당 값에 의해  ouput 속성이
+			// 변경 되게 처리하자.
+			$("#radio > input").change(function(){
+				//alert($(this).val());
+				// 클릭시 마다. 기본 reset() 함수의 내용이 일단 적용되고,
+				reset();
+				// 상호작용하는 속성 클래스 적용.
+				$("#output").addClass("ui-state-"+$(this).val());
+			});
+        });
+        function reset(){
+        	var resetCls = "ui-corner-all ui-widget-content box";
+        	$("#output").attr("class", resetCls);
+        }
+    </script>
+</head>
+<body>
+    <div id="radio">
+        <input type="radio" name="theme" id="highlight" value="highlight" />
+        <label for="highlight">highlight</label>
+        <input type="radio" name="theme" id="error" value="error" />
+        <label for="error">error</label>
+        <input type="radio" name="theme" id="error-text" value="error-text" />
+        <label for="error-text">error-text</label>
+        <input type="radio" name="theme" id="disabled" value="disabled" />
+        <label for="disabled">disabled</label>
+        <button>RESET</button>
+    </div>
+    <br />
+    <div id="output">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+</body>
+</html>

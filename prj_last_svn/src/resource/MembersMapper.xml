@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.MembersDao">
+<resultMap type="members" id="membersMap" />
+
+
+<!-- 활성화 상태 테이블을 위한 쿼리문 -->
+<select  id="actmemberList" 
+         parameterType="members" 
+         resultMap="membersMap">
+      SELECT a.auth, a.activation, a.uptdate, a.prjno, b.id, b.name, b.dept, b.job 
+	  FROM members a, membership b
+	  WHERE a.memno=b.memno AND activation='활성화' AND a.prjno = #{prjno}
+</select>
+
+<!-- 비활성화 상태 테이블을 위한 쿼리문 -->
+<select  id="inactmemberList" 
+         parameterType="members" 
+         resultMap="membersMap">
+      SELECT a.auth, a.activation, a.uptdate, a.prjno, b.id, b.name, b.dept, b.job 
+	  FROM members a, membership b
+	  WHERE a.memno=b.memno AND activation='비활성화' AND a.prjno = #{prjno}
+</select>
+
+
+<!-- 멤버 추가 화면 출력 쿼리문
+Members addMem(String id);
+-->
+
+<select 
+	  id="addMem"
+      parameterType="String"
+      resultType="members">
+      SELECT id, name, dept, job, memno, prjno FROM MEMBERSHIP
+	  WHERE memno NOT IN(SELECT memno FROM MEMBERS WHERE prjno = #{prjno})
+      AND id = #{id}
+      
+      
+</select>
+
+
+<!-- 멤버 추가 등록버튼 클릭 시, 멤버로 입력됨 -->
+<insert id="insertMembers" parameterType="members">   
+   
+   INSERT INTO members VALUES('membern'||members_seq.nextval,#{memno},#{prjno},#{auth},'활성화',sysdate)
+</insert>
+
+
+<!-- 멤버 삭제 버튼 클릭 시, 멤버에서 데이터 삭제 -->
+<delete id="deleteMembers" parameterType="int">
+   DELETE FROM members WHERE memno = #{memno}
+</delete>
+
+
+</mapper>

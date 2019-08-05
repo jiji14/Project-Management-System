@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/* 각 박스사이즈 설정 */
+.page-title-box{
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+}
+
+.logBox{
+	height:550px !important;
+}
+
+/* 박스 타이틀 크기 설정 */
+.textHead{
+	font-size:20px !important;
+}
+
+/*첫번째 박스 - */
+.prjinfo{
+	display:flex !important;
+	justify-content: space-between;
+}
+
+.leftText{
+	font-weight:bold;
+	color:#6c757d;
+}
+
+#job{
+	margin:0px !important;
+	margin-left:10px !important;
+}
+
+
+/*두번째 박스 - 멤버로그 차트사이즈설정 */
+#logchartdiv {
+   height: 450px; 
+}
+.descBox{
+	text-align:right;
+}
+.logDesc{
+	
+	margin:0;
+	margin-right:50px;
+}
+
+
+#riskchartdiv {
+   height: 450px; 
+}
