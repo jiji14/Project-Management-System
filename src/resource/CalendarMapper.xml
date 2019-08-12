@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.A07_CalendarDao">
+<!-- property getStart() 를 컬럼 begin과 mapping 처리 -->
+<resultMap type="calendar" id="calenMap" >
+   <result property="start" column="begin01"/>
+   <result property="end" column="end01"/> 
+   <!-- database의 column명이 property와 다를때 이렇게 세팅해준다. -->
+</resultMap>
+
+<select id="calList" resultMap="calenMap" parameterType="calendar">
+   SELECT * FROM calendar
+	where prjno=#{prjno}
+</select>
+<insert id="insert" parameterType="calendar">
+   INSERT INTO calendar values(
+    cal_seq.nextval,
+    #{title},
+    #{start},
+    #{end},
+    #{content},
+    #{color},
+    #{textColor},
+    #{allDay},
+    #{prjno}
+   )
+
+</insert>
+
+<update id="update" parameterType="calendar">
+   UPDATE calendar
+      SET title = #{title},
+         begin01 = #{start},
+         end01 = #{end},
+         content = #{content},
+         color = #{color},
+         textColor = #{textColor},
+         allDay = #{allDay}
+      WHERE id = #{id}
+</update>
+
+<delete id="delete" parameterType="int">
+   DELETE FROM calendar
+   WHERE id = #{id}
+</delete>
+</mapper>

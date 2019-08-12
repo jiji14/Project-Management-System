@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	<mapper namespace="finalproject.data.dao.A05_PermitDao">
+	<resultMap type="permit" id="permitMap"/>
+	<resultMap type="tasks" id="tasksMap"/>
+	<resultMap type="member" id="memberMap"/>
+	
+	<!-- pm 확인해야하는 미승인 건 --> 
+	<select id="pmchk" resultMap="permitMap" parameterType="member">
+	SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='미승인' and b.prjno=#{prjno} and a.taskid = b.taskid
+	</select>
+	<!-- pm 확인해야하는 반려 건 --> 
+	<select id="pmreject" resultMap="permitMap" parameterType="member">
+	SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='반려' and b.prjno=#{prjno} and a.taskid = b.taskid
+	</select>
+	<!-- pm 확인해야하는 승인 건 --> 
+	<select id="pmdone" resultMap="permitMap" parameterType="member">
+		SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='승인' and b.prjno=#{prjno} and a.taskid = b.taskid AND b.views='yes'
+	</select>
+	
+	<!--일반멤버가 확인해야하는 미승인 건  -->
+	<select id="pmList" resultMap="permitMap" parameterType="member">
+	SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='미승인'and a.memno=#{memno} and b.prjno=#{prjno} and a.taskid=b.taskid
+	</select>
+
+	<!--일반멤버가 확인해야하는 반려 건  -->
+	<select id="rejectList" resultMap="permitMap" parameterType="member">
+	SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='반려' and a.memno=#{memno} and b.prjno=#{prjno} and a.taskid=b.taskid
+	</select>
+	
+	<!-- 일반멤버가 확인해야하는 승인 건  -->
+	<select id="doneList" resultMap="permitMap" parameterType="member">
+	SELECT b.taskid, b.prjno, b.name, b.uptdate, b.isread, a.memno FROM assigs a, tasks b WHERE b.approval='승인' and a.memno=#{memno} and b.prjno=#{prjno} and a.taskid=b.taskid
+	</select>		
+
+	<!-- 상세보기하면 확인으로 넘어갑니다잉 -->
+	<update id="uptBtn" parameterType="String">
+	UPDATE tasks SET isread='확인' WHERE taskid=#{taskid}
+	</update>
+	
+	<!-- 상세화면 들어갑니다잉  -->
+	<select id="getTask" resultType="permit" parameterType="String">
+	SELECT * FROM tasks WHERE taskid=#{taskid}
+	</select>
+
+	<!-- 승인 처리 -->
+	<update id="confirmProc" parameterType="String">
+	UPDATE tasks SET checkalarm=0, approval ='승인' WHERE taskid=#{taskid}
+	</update>	
+
+	<!-- 반려 처리 -->
+	<update id="rejectProc" parameterType="String">
+	UPDATE tasks SET checkalarm=0, approval ='반려' WHERE taskid=#{taskid}
+	</update>
+	
+	<!-- 승인완료건에서 안보이게 -->
+	<update id="approve" parameterType="String">
+	UPDATE tasks set views='no' WHERE taskid=#{taskid}
+	</update>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+   
+   <!-- 
+   1. dao interface 이름과 namespace와 연동: 예로 밑에 A01_EmpDao. 
+   2. dao의 기능 메서드명과 sql의 id명과 통일해야 연동이 가능하다. 
+   3. 메서드의 매개변수를 통해서 조건이나 입력 데이터, 수정데이터 처리할 때, 
+      parameterType이라는 속성을 지정하여야 한다.
+   4. Return type에 대한 선언:: resultType   resultMap
+      1) public int count(); return type은 int. 단일 데이터는 resultType="int"로 설정.
+      2) public Emp getEmp(int empno) 한개의 데이터 가져오는 단일 객체인 경우 resultType="emp"
+         result객체가 vo로 설정되었기 떄문에 가능. 
+      3) public ArrayList<Emp> empList(Emp sch);
+         ArrayList<Emp>라는 2차원 데이터를 저장하는 객체를 선언하여야 한다. 
+         resultMap의 속성 값으로 설정.
+         resultMap을 선언하기 위해서 tag로 resultMap를 사용하는 여기에 속성값을 id와 type이 있다.
+         2차원을 즉 배열 형식으로 설정할떄 resultMap이 사용된다. 여기 단위 객체에 대한 설정으로 type 속성값으로
+         설정하고, resultMap type="emp": 2차원 배열객체는 emp라는 단위객체들이 모여서 된 것입니다.
+         id속성은 이 모듈 하위에서 공통적으로 호출하여 쓸 수 있게끔 선언하는 부분..
+         -각각의 sql에 대한 설정은 id="메서드명" , parameterType="메서드의 매개변수"
+          resultType/resultMap은 return할 객체. 
+    -->
+   <mapper namespace="finalproject.data.dao.A04_JoinDao">
+   <!--public ArrayList<Emp> empList(Emp sch);  -->
+   <resultMap type="member" id="memMap" />
+   
+   <!-- 윗줄에 미리 설정한 이유는 키, 컬럼명 등을 설정하는게 resultMap. 설정한후 밑에 empMap으로 선언.
+   parametertype emp는 mybatis.Spring.xml에 선안한 allias이름이나, 객체
+   <typeAlias alias="emp" type="springweb.z01_vo.Emp"/>
+   vo 객체 이름이 너무 기니 alias로 emp   
+    -->
+ 
+   
+   <!-- void insertEmp(Emp insert) -->
+   <insert id="joinMem" parameterType="member" >
+      insert into Membership values('memno'||memno1_seq.nextval,
+         '${id}',#{pw},#{name},sysdate,#{dept},#{job},'pro0',sysdate)
+   </insert>
+
+   <select id="idCheck" parameterType="String" 
+	resultType="member">
+		SELECT * FROM Membership WHERE id=#{id}
+	</select> 
+	
+	<!-- 처음 회원가입하면 UI 기본값 설정 -->
+	<insert id="insertUi">
+		insert into uiformat(uino, memno) values('uino'||ui_seq.nextval, 'memno'||memno1_seq.currval)
+	</insert>
+</mapper>   
+
+
+
+
+
+
+
+

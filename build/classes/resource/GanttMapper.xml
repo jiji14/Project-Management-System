@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.GanttDao">
+<resultMap type="assig" id="assigMap">
+         <result property="id" column="assigsid"/>
+         <result property="resourceId" column="memno"/>
+         <result property="roleId" column="membern"/>
+         <result property="code" column="prjno"/>
+</resultMap>
+
+<resultMap type="resource" id="resourceMap">
+         <result property="id" column="MEMNO"/>
+</resultMap>
+
+<resultMap type="role" id="roleMap">
+         <result property="id" column="MEMBERN"/>
+         <result property="name" column="AUTH"/>
+</resultMap>
+
+<resultMap type="paramtasks" id="taskMap">
+         <result property="id" column="TASKID"/>
+         <result property="code" column="PRJNO"/>
+         <result property="start" column="STARTDATE"/>
+         <result property="end" column="ENDDATE"/>
+         <result property="level" column="level01"/>
+</resultMap>
+
+  	  <select id="assigList" parameterType="assig" resultMap="assigMap">
+         SELECT * FROM ASSIGS WHERE PRJNO = #{prjno}
+      </select>
+      
+      <select id="taskList" parameterType="paramtasks" resultMap="taskMap">
+	       SELECT TASKID, NAME, PROGRESS, DESCRIPTION, PRJNO, STATUS,
+		   DEPENDS, STARTDATE, DURATION, ENDDATE, STARTISMILESTONE,
+		   ENDISMILESTONE, LEVEL01 FROM TASKS WHERE PRJNO = #{prjno}
+		   ORDER BY TASKID
+      </select>
+      
+      <select id="resourceList" parameterType="resource" resultMap="resourceMap">
+         SELECT b.NAME, b.MEMNO FROM MEMBERS a, MEMBERSHIP b WHERE a.memno = b.memno AND a.PRJNO = #{prjno} AND a.activation = '활성화'
+      </select>
+      
+      <select id="roleList" parameterType="role" resultMap="roleMap">
+         SELECT a.MEMBERN, a.AUTH, a.prjno code, a.memno FROM MEMBERS a, MEMBERSHIP b WHERE a.memno = b.memno AND a.PRJNO = #{prjno} AND a.activation = '활성화'
+      </select>
+
+      <!-- Role 저장(Role=Members=MembersVO)-->
+      <delete id="deleteRole" parameterType="String">
+         DELETE MEMBERS WHERE PRJNO = #{prjno}
+      </delete>
+      <insert id="insertRole" parameterType="role">
+         INSERT INTO MEMBERS VALUES(#{id}, #{memno}, #{code}, #{name}, '활성화', sysdate)
+      </insert> 
+      
+       <!-- Task 저장 -->
+      <delete id="deleteTasks" parameterType="String">
+         DELETE TASKS WHERE PRJNO = #{prjno}
+      </delete>
+      <insert id="insertTasks" parameterType="paramtasks">
+         INSERT INTO TASKS VALUES(#{id}, #{code, jdbcType=VARCHAR}, #{name}, #{progress}, #{description, jdbcType=VARCHAR}, 
+         #{status}, #{depends, jdbcType=VARCHAR}, #{start}, #{duration}, #{end}, 
+         #{startIsMilestone}, #{endIsMilestone}, '미정', sysdate, '미승인','미확인',0,0,#{level},'yes')      
+      </insert>
+      
+      
+      <!-- Assig 저장 --> 
+      <delete id="deleteAssig" parameterType="String">
+         DELETE FROM ASSIGS WHERE PRJNO = #{prjno}
+      </delete>
+      <insert id="insertAssig" parameterType="assig">
+         INSERT INTO ASSIGS VALUES(#{id}, #{resourceId}, #{code}, #{roleId}, #{effort},#{taskId})
+      </insert>
+
+
+
+</mapper>
+
+ 
+    

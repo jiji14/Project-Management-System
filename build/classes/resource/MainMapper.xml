@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="finalproject.data.dao.A01_MainDao">
+<resultMap type="project" id="prjMap" />
+<resultMap type="members" id="membersMap" />
+<resultMap type="memberlog" id="memlogMap" />
+<resultMap type="status" id="statusMap" />
+<resultMap type="uiformat" id="uiMap" />
+<resultMap type="board" id="boardMap" />
+<resultMap type="todolist" id="todoMap" />
+
+
+	<!-- 프로젝트정보 -->
+	<select id="projectList" parameterType="String" resultType="project">
+		select * from project where prjno=#{prjno}
+	</select>
+	
+	<!-- 멤버정보 -->
+	<select id="memberList" parameterType="String" resultMap="membersMap">
+		select a.prjno, b.memno, b.name, b.job, a.auth from members a, membership b 
+		where a.memno = b.memno and a.prjno=#{prjno}
+	</select>
+	
+	<!-- 멤버로그 -->
+	<select id="memberLog" parameterType="String" resultMap="memlogMap">
+		SELECT a.memno, c.name, a.done, b.allwork FROM 
+		(SELECT b.memno, count(*) done FROM tasks a, assigs b WHERE  a.taskid = b.taskid 
+		AND approval='승인' AND status='STATUS_DONE' AND a.prjno = #{prjno} GROUP BY b.memno) a, 
+		(SELECT b.memno, count(*) allwork FROM tasks a, assigs b WHERE  a.taskid = b.taskid 
+		AND approval='승인' AND a.prjno = #{prjno} GROUP BY b.memno) b,
+		membership c WHERE a.memno = b.memno AND b.memno = c.memno AND a.memno=c.memno
+	</select>
+	
+	<!-- 리스크 -->
+	<select id="riskChart" parameterType="String" resultMap="statusMap">
+		SELECT * FROM (select status, count(*) count from risk WHERE prjno = #{prjno}
+		GROUP BY status) a ORDER BY DECODE(status,'진행중',1,'보류',2,'완료',3)
+	</select>
+	
+	<!-- UI 불러오기 -->
+	<select id="loadUi" parameterType="String" resultType="uiformat">
+		select * from uiformat where memno = #{memno}
+	</select>
+	
+	<!-- UI 변경 -->
+	<update id="uiUpdate" parameterType="uiformat" >
+		update uiformat set box1=#{box1}, box2=#{box2}, box3=#{box3}, box4=#{box4}
+		where memno=#{memno}
+	</update>
+	
+	<!-- 보드 불러오기 -->
+	<select id="boardList" parameterType="String" resultMap="boardMap">
+	   SELECT * FROM board where prjno = #{prjno}
+	</select>
+	
+	<!-- 알람 -->
+	<select id="alarmList" parameterType="String" resultMap="todoMap">
+		select a.* from tasks a, assigs b where a.taskid = b.taskid and b.memno=#{memno}
+		and isread = '확인' and checkAlarm = 0 
+	</select>
+
+	<!-- 알람 개별 읽음 여부 업데이트 -->
+	<update id="checkEachAlarm" parameterType="String">
+		update tasks set checkalarm = 1 where taskid = #{taskid}
+	</update>
+		
+	<!-- 알람 전체 읽음 여부 업데이트 -->
+	<update id="checkAllAlarm" parameterType="String">
+		update tasks set checkalarm = 1 
+	</update>
+</mapper>

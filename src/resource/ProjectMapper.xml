@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+   
+   
+   <mapper namespace="finalproject.data.dao.A04_ProjectDao">
+   <resultMap type="project" id="prjMap" />
+   <resultMap type="members" id="membersMap" />
+   <resultMap type="member" id="memberMap" />
+   <resultMap type="projectsch" id="projectschMap" />
+   
+   <!-- public Project prjGet(String prjno) -->
+   <select id="prjGet" resultMap="prjMap" parameterType="String">
+      select * from project where prjno=#{prjno}
+   </select>
+   <!-- prjno뽑    map은 배열일때 사용 / resultType 하나의 변수나 객체만 뽑아올때-->
+   <select id="pickprj" resultType="string">
+      SELECT max(prjno) FROM project
+   </select>
+   
+   <insert id="insertMembers" parameterType="members">   
+   INSERT INTO members VALUES('membern'||members_seq.nextval,#{memno},#{prjno},#{auth},'활성화',sysdate)
+   </insert>
+   
+   <insert id="prjInsert" parameterType="project" >
+   INSERT INTO project values('pro'||project_seq.nextval,#{prjname},#{prjstatus},#{client},#{stdate}
+,#{duedate},sysdate,#{memno},#{description},'활성화')
+   </insert>
+   <!-- 세션 memno로 auth 받아오기 -->
+      <select id="getAuth" resultType="string" parameterType="member">
+   SELECT auth FROM members WHERE prjno=#{prjno} AND memno=#{memno}
+   </select>
+
+   <update id="prjUpdate" parameterType="project" >
+   update project
+      set 
+         prjname=#{prjname},
+         prjstatus=#{prjstatus},
+         client=#{client},
+         stdate=#{stdate},
+         duedate=#{duedate},
+         uptdate=sysdate
+         where prjno=#{prjno}
+         
+   </update>
+   <!-- 삭제하는척한다 -->
+   <update id="prjDelete" parameterType="project" >
+      UPDATE project SET activation='비활성화' WHERE prjno=#{prjno}
+   </update>
+
+   <select id="prjList" resultMap="prjMap" parameterType="projectsch">
+      SELECT a.* FROM project a, (SELECT * FROM MEMBERS WHERE memno=#{memno}) b WHERE a.prjno=b.prjno and a.activation='활성화'
+      and 1=1
+      <if test="prjname != null and prjname != ''">  <!-- 제목이 null이나 공백이 아니고  title이 jsp에서 다음과 같을때-->
+            and prjname like '%'||#{prjname}||'%'
+         </if>
+   </select>
+   <!-- 멤버아이디 리스트 뽑아오기  -->
+   <select id="actmemberList" parameterType="members" resultMap="membersMap">
+      SELECT distinct c.id id FROM MEMBERS a, MEMBERSHIP c 
+      WHERE a.memno=c.memno
+</select>
+   <!-- 아이디로 멤버넘버 가져오기 -->
+   <select id="memnoList" resultMap="membersMap">
+      SELECT id, memno FROM membership
+</select>
+<!--  여기는 멤버전용? -->
+<update id="memberUpt" parameterType="member">
+   UPDATE membership SET prjno=#{prjno} WHERE MEMNO=#{memno}
+</update>
+</mapper>
